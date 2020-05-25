@@ -1,0 +1,90 @@
+let SessionLoad = 1
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+cd ~/Projects/articles/gRPC-nest-js-ar
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+badd +1 api/api.proto
+badd +2 services/gateway/src/main.ts
+badd +53 term://.//54512:zsh
+badd +1 README.md
+badd +77 services/gateway/node_modules/@nestjs/core/nest-factory.d.ts
+badd +11 services/gateway/src/app.controller.ts
+badd +3 api/summator.proto
+badd +4 term://.//55813:zsh
+badd +43 term://.//56083:zsh
+badd +10 services/summator/src/main.ts
+badd +27 term://.//56787:zsh
+badd +155 term://.//57559:zsh
+badd +6 services/summator/src/app.controller.ts
+badd +3 term://.//58813:zsh
+argglobal
+%argdel
+edit api/summator.proto
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 102 + 102) / 204)
+exe 'vert 2resize ' . ((&columns * 101 + 102) / 204)
+argglobal
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 5 - ((4 * winheight(0) + 26) / 53)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+5
+normal! 0
+wincmd w
+argglobal
+if bufexists("services/summator/src/app.controller.ts") | buffer services/summator/src/app.controller.ts | else | edit services/summator/src/app.controller.ts | endif
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+5
+normal! zo
+let s:l = 9 - ((8 * winheight(0) + 26) / 53)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+9
+normal! 03|
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 102 + 102) / 204)
+exe 'vert 2resize ' . ((&columns * 101 + 102) / 204)
+tabnext 1
+if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 winminheight=1 winminwidth=1 shortmess=filnxtToOFc
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :
