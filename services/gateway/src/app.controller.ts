@@ -21,7 +21,6 @@ export class AppController implements OnModuleInit {
 
   @GrpcMethod('GatewayService', 'Add')
   getHello(body: AddRequest) {
-    console.log('this.summatorService', this.summatorService);
     return this.summatorService.sum({ numbers: [body.a, body.b] }).toPromise();
   }
 }

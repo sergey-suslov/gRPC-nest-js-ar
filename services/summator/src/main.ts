@@ -13,9 +13,6 @@ async function bootstrap() {
         url: URL,
         package: 'summator',
         protoPath: path.resolve(__dirname, '../../../api/summator.proto'),
-        loader: {
-          includeDirs: [path.resolve(__dirname, '../../..')],
-        },
       },
     },
   );
