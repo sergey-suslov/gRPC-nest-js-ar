@@ -20,7 +20,7 @@ export class AppController implements OnModuleInit {
   }
 
   @GrpcMethod('GatewayService', 'Add')
-  getHello(body: AddRequest) {
+  add(body: AddRequest) {
     return this.summatorService.sum({ numbers: [body.a, body.b] }).toPromise();
   }
 }
